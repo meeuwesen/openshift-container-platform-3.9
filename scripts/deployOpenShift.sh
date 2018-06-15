@@ -234,8 +234,8 @@ runuser -l $SUDOUSER -c "ansible-playbook -f 10 /usr/share/ansible/openshift-ans
 # Configure resolv.conf on all hosts through NetworkManager
 echo $(date) " - Setting up NetworkManager on eth0"
 runuser -l $SUDOUSER -c "ansible all -f 10 -b -m service -a \"name=NetworkManager state=restarted\""
-sleep 30
-runuser -l $SUDOUSER -c "ansible all -f 10 -b -m command -a \"nmcli con modify eth0 ipv4.dns-search $DOMAIN\""
+sleep 5
+runuser -l $SUDOUSER -c "ansible all -f 10 -b -m command -a \"nmcli con modify System\ eth0 ipv4.dns-search $DOMAIN\""
 runuser -l $SUDOUSER -c "ansible all -f 10 -b -m service -a \"name=NetworkManager state=restarted\""
 
 # Updating all hosts
